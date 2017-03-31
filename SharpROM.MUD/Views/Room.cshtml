@@ -3,3 +3,19 @@
 [@Raw(Model.Name)]
 
 @Raw(Model.LongDescription)
+
+@if (Model.Exits.HasExit == false)
+{
+    @:There seems to be no way out of here.
+} else
+{
+    List<string> exits = new List<string>();
+    if (Model.Exits.North) { exits.Add("north"); }
+    if (Model.Exits.East) { exits.Add("east"); }
+    if (Model.Exits.South) { exits.Add("south"); }
+    if (Model.Exits.West) { exits.Add("west"); }
+    if (Model.Exits.Up) {exits.Add("up");}
+    if (Model.Exits.Down) {exits.Add("down");}
+    var exitsStr = "[" + String.Join(" ", exits.ToArray()) + "]";
+    @exitsStr
+}

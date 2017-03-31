@@ -44,6 +44,7 @@ namespace SharpROM.MUD.Commands
                 //no args, look at the room
                 var RoomVNUM = user.EntityInfo.RoomVNUM;
                 RoomPresenter p = new RoomPresenter();
+
                 RoomViewModel vm = p.CreateViewModel(new List<object> { DataManager.GetRoom(user.EntityInfo.RoomVNUM) });
                 DisplayViewMessage ViewInfo = new DisplayViewMessage() { ToUserSession = user.SessionID, ViewName="Room", ViewModel=vm };
                 EventRoutingService.QueueEvent(ViewInfo);

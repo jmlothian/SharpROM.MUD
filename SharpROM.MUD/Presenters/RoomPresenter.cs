@@ -13,8 +13,14 @@ namespace SharpROM.MUD.Presenters
             RoomViewModel room = CreateViewModel<RoomViewModel>(models);
             Room r = (Room)models[0];
             //todo, parse colors here?  should we do that just before output?
+
             room.LongDescription = r.LongDescription;
             room.Name = r.Name;
+
+            //exits
+            RoomExitPresenter ep = new RoomExitPresenter();
+            ExitViewModel evm = ep.CreateViewModel(new List<object> { r.Exits });
+            room.Exits = evm;
             return room;
         }
     }
