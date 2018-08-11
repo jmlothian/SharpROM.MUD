@@ -27,10 +27,16 @@ namespace SharpROM.MUD
         public override bool HandleEvent(IEventMessage Message)
         {
             DisplayViewMessage viewMessage = (DisplayViewMessage)Message;
-            string result = ViewEngine.Parse(viewMessage.ViewName + ".cshtml", viewMessage.ViewModel);
-            ViewOutputMessage viewOutput = new ViewOutputMessage() { ViewOutput = result, SessionId=viewMessage.ToUserSession };
-            //send message to user with this info, it should be output there somehow
-            EventRoutingService.QueueEvent(viewOutput);
+            if (viewMessage.ToUserSession != -1)
+            {
+                string result = ViewEngine.Parse(viewMessage.ViewName + ".cshtml", viewMessage.ViewModel);
+                ViewOutputMessage viewOutput = new ViewOutputMessage() { ViewOutput = result, SessionId = viewMessage.ToUserSession };
+                //send message to user with this info, it should be output there somehow
+                EventRoutingService.QueueEvent(viewOutput);
+            } else if(viewMessage.ToVNUM != "")
+            {
+                //this message was intended to go to a mob, pass it the viewmodel
+            }
             return false; //continue processing
         }
     }

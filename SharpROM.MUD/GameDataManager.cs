@@ -168,6 +168,32 @@ namespace SharpROM.MUD
         {
             return Data.Users[sessionId];
         }
+        public ExitInfo GetExitFromDir(string currentVNUM, string direction)
+        {
+            ExitInfo exit = null;
+            switch(direction)
+            {
+                case "north":
+                    exit = Data.RoomIndex[currentVNUM].Exits.North;
+                    break;
+                case "east":
+                    exit = Data.RoomIndex[currentVNUM].Exits.East;
+                    break;
+                case "south":
+                    exit = Data.RoomIndex[currentVNUM].Exits.South;
+                    break;
+                case "west":
+                    exit = Data.RoomIndex[currentVNUM].Exits.West;
+                    break;
+                case "up":
+                    exit = Data.RoomIndex[currentVNUM].Exits.Up;
+                    break;
+                case "down":
+                    exit = Data.RoomIndex[currentVNUM].Exits.Down;
+                    break;
+            }
+            return exit;
+        }
         public void BroadcastToChat(string mesg)
         {
             foreach (KeyValuePair<int, UserInfo> user in Data.Users)

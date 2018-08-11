@@ -1,8 +1,8 @@
 ﻿@model SharpROM.MUD.ViewModels.RoomViewModel
 
-[@Raw(Model.Name)]
+{K[{C @Raw(Model.Name) {K]{x
 
-@Raw(Model.LongDescription)
+@Raw("{g" + Model.LongDescription) {x
 
 @if (Model.Exits.HasExit == false)
 {
@@ -16,6 +16,6 @@
     if (Model.Exits.West) { exits.Add("west"); }
     if (Model.Exits.Up) {exits.Add("up");}
     if (Model.Exits.Down) {exits.Add("down");}
-    var exitsStr = "[" + String.Join(" ", exits.ToArray()) + "]";
+    var exitsStr = "{W[" + String.Join(" ", exits.ToArray()) + "]{x";
     @exitsStr
 }

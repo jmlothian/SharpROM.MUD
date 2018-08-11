@@ -10,6 +10,7 @@ using System.IO;
 using Newtonsoft.Json;
 using SharpROM.Core;
 using SharpROM.MUD.Messages;
+using SharpROM.MUD.Utils;
 
 namespace SharpROM.MUD
 {
@@ -71,7 +72,7 @@ namespace SharpROM.MUD
             if(Message is ViewOutputMessage)
             {
 
-                DataManager.OutputToUser(((ViewOutputMessage)Message).ViewOutput, ((ViewOutputMessage)Message).SessionId);
+                DataManager.OutputToUser(((ViewOutputMessage)Message).ViewOutput.ParseColors(), ((ViewOutputMessage)Message).SessionId);
                 continueProcessing = false;
             }
             return continueProcessing;

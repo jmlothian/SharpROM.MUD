@@ -10,5 +10,6 @@ namespace SharpROM.MUD.Messages
         public string ViewName { get; set; } = "";
         public object ViewModel { get; set; } = null;
         public int ToUserSession { get; set; } = -1;
+        public string ToVNUM { get; set; } = "";
     }
 }

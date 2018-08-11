@@ -15,14 +15,17 @@ namespace SharpROM.MUD.ConnectedStates
         public IEventRoutingService EventRoutingService { get; set; }
         public virtual CONN_STATE ConnectedState { get => CONN_STATE.CONN_STATE_NONE; }
         private List<IMUDCommand> Commands = new List<IMUDCommand>();
-        protected CommandProcessor CmdProcessor { get; set; }
+        public CommandProcessor CmdProcessor { get; set; }
         public void AddCommand(IMUDCommand command)
         {
             Commands.Add(command);
         }
         public virtual void Initialize()
         {
-            CmdProcessor = new CommandProcessor(Commands);
+            if (CmdProcessor == null)
+                CmdProcessor = new CommandProcessor(Commands);
+            else
+                CmdProcessor.Initialize(Commands);
         }
 
         public BaseConnStateHandler(IEventRoutingService eventRoutingService, GameDataManager dataManager)

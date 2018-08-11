@@ -7,6 +7,7 @@ using SharpROM.MUD.Messages;
 using SharpROM.MUD.ViewModels;
 using SharpROM.MUD.Abstract;
 using SharpROM.MUD.Presenters;
+using SharpROM.MUD.Models;
 
 namespace SharpROM.MUD.Commands
 {
@@ -33,7 +34,7 @@ namespace SharpROM.MUD.Commands
             DataManager = dataManager;
         }
 
-        public void HandleInput(List<string> args, UserInfo user)
+        public void HandleInput(List<string> args, Entity entity, UserInfo user = null)
         {
             if(args.Count == 1)
             {

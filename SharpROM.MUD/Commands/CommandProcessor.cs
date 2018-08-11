@@ -1,4 +1,6 @@
 ﻿using SharpROM.MUD.Abstract;
+using SharpROM.MUD.ConnectedStates;
+using SharpROM.MUD.Models;
 using SharpROM.MUD.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,7 @@ namespace SharpROM.MUD.Commands
         Dictionary<string, IMUDCommand> CommandLookup { get; set; } = new Dictionary<string, IMUDCommand>();
         List<IMUDCommand> Commands { get; set; }
 
-        public void DoCommand(string input, UserInfo user)
+        public void DoCommand(string input, Entity entity, UserInfo user)
         {
             int pos = 0;
             string command = input.ReadWord(ref pos);
@@ -24,13 +26,18 @@ namespace SharpROM.MUD.Commands
                 if (pos < input.Length)
                     args = input.Substring(pos).Split(' ').ToList(); 
                 //check min/max
-                CommandLookup[command].HandleInput(args, user);
+                CommandLookup[command].HandleInput(args, entity, user);
             } else
             {
                 //error, no command found
             }
         }
         public CommandProcessor(List<IMUDCommand> commands)
+        {
+            Initialize(commands);
+        }
+
+        public void Initialize(List<IMUDCommand> commands)
         {
             List<string> Aliases = new List<string>();
             Commands = commands.OrderBy(o => o.Command).ToList();

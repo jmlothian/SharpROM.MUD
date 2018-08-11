@@ -102,5 +102,26 @@ namespace SharpROM.MUD.Utils
             return "";
         }
         
+        public static string ParseColors(this string data)
+        {
+            char esc = (char)27;
+            data = data
+                .Replace("{x", esc + "[0m")
+                .Replace("{K", esc + "[1;30m")
+                .Replace("{W", esc + "[1;31m")
+                .Replace("{G", esc + "[1;32m")
+                .Replace("{Y", esc + "[1;33m")
+                .Replace("{B", esc + "[1;34m")
+                .Replace("{M", esc + "[1;35m")
+                .Replace("{C", esc + "[1;36m")
+                .Replace("{W", esc + "[1;37m")
+                .Replace("{g", esc + "[0;32m")
+                .Replace("{y", esc + "[0;33m")
+                .Replace("{b", esc + "[0;34m")
+                .Replace("{m", esc + "[0;35m")
+                .Replace("{c", esc + "[0;36m")
+                .Replace("{w", esc + "[0;37m");
+            return data;
+        }
     }
 }

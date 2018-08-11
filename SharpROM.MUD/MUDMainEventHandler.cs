@@ -20,6 +20,7 @@ namespace SharpROM.MUD
        // MUDServer Server { get; set; }
         private GameDataManager DataManager { get; set; }
         Dictionary<CONN_STATE, IConnStateHandler> StateHandlers { get; set; }
+        public CommandProcessor PlayingCommands => StateHandlers[CONN_STATE.CONN_STATE_PLAYING].CmdProcessor;
         public MUDMainEventHandler(IEventRoutingService evtRoutingService, 
             TelOptManagement telOpts, ILogger<TelnetEventHandler> logger,
             //MUDServer server,

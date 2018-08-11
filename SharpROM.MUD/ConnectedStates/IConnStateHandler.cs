@@ -12,7 +12,7 @@ namespace SharpROM.MUD.ConnectedStates
         GameDataManager DataManager { get; set; }
 
         void HandleInput(string input, UserInfo user);
-
+        CommandProcessor CmdProcessor { get; set; }
         CONN_STATE ConnectedState { get; }
         void AddCommand(IMUDCommand command);
         void Initialize();

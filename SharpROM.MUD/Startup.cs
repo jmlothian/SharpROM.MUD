@@ -15,6 +15,8 @@ using System.Linq;
 using System.Reflection;
 using SharpROM.MUD.Utils;
 using SharpROM.MUD.Presenters;
+using SharpROM.MUD.Commands;
+using System.IO;
 
 namespace SharpROM.MUD
 {
@@ -51,7 +53,7 @@ namespace SharpROM.MUD
             services.AddOptions();
             services.Configure<SocketListenerSettings>(Configuration);
             services.AddSingleton<TelOptManagement>();
-            services.AddSingleton<TelnetEventHandler, MUDMainEventHandler>();
+            services.AddSingleton<MUDMainEventHandler>();
             services.AddSingleton<MUDServer>();
             services.AddSingleton<ViewController>();
             //todo: eventually we will need to pass a factory for a list of IEventManagers
@@ -72,6 +74,7 @@ namespace SharpROM.MUD
             //ILoggerFactory loggerFactory 
             //autoregister connected state event handlers
             services.AddAutoRegistration();
+            Directory.SetCurrentDirectory("C:\\Users\\jeremy.lothian\\OneDrive\\Projects\\SharpROM.MUD\\SharpROM.MUD");
         }
     }
 }

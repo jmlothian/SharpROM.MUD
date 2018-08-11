@@ -8,17 +8,19 @@ using System.Text;
 
 namespace SharpROM.MUD.ConnectedStates
 {
-    class ConnStatePlaying : BaseConnStateHandler
+    public class ConnStatePlaying : BaseConnStateHandler
     {
         public override CONN_STATE ConnectedState { get => CONN_STATE.CONN_STATE_PLAYING; }
 
         public ConnStatePlaying(IEventRoutingService eventRoutingService, GameDataManager dataManager) :base(eventRoutingService, dataManager)
         {
+            CmdProcessor = new CommandProcessor(new List<Abstract.IMUDCommand>());
         }
 
         public override void HandleInput(string input, UserInfo user)
         {
-            CmdProcessor.DoCommand(input, user);
+            
+            CmdProcessor.DoCommand(input, user.EntityInfo, user);
             //check to see if the input is a backslash command
             /*
             if (input.Length > 0 && input[0] == '/')

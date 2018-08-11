@@ -13,7 +13,7 @@ namespace SharpROM.MUD.ConnectedStates
     {
         public IEventRoutingService EventRoutingService { get ; set; }
         public GameDataManager DataManager { get; set; }
-
+        public CommandProcessor CmdProcessor { get; set; }
         public CONN_STATE ConnectedState { get => CONN_STATE.CONN_STATE_CONNECTED; }
         private List<IMUDCommand> Commands = new List<IMUDCommand>();
         public void Initialize() { }
